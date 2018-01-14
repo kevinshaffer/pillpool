@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pill Pool</title>
+		<link rel="shortcut icon" href="img/favicon.ico">
+		<link rel="apple-touch-icon" href="img/touch-icon-iphone.png" /> 
+		<link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png" /> 
+		<link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png" />   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kevin Shaffer">
+    <meta name="copyright" content="2018">
+	<!--<link href="css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">-->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!--<link href="css/bootstrap-theme.css" rel="stylesheet">-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/sprites.css" rel="stylesheet">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/balls.js"></script>	
+		<script src="js/core.js"></script>
+		<!--<script src="js/jquery-ui.js"></script>-->
+		<script src="js/bootstrap.min.js"></script>	
+
+     
+
+<!-- HTML5 shim for IE backwards compatibility -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="container">
+	<div class="row"><div class="col-sm-12">
+	<br>
+		<select class="form-control" style="width:50%;float:right" id="num_balls">
+				<option selected disabled value="default">Balls per Player</option>
+		</select>
+		<select class="form-control" style="width:50%;float:left" id="num_players">
+		<option selected disabled value="default">Players</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+		</select><br><br>
+		<button class="btn btn-primary btn-block" href="" id="new_game" >New Game</button>
+<button onclick="verifyPassword(1)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="1" >Show Player 1's Balls</button>
+<button onclick="verifyPassword(2)" data-state="live" style="display:none"  class="btn btn-success btn-block" id="2" >Show Player 2's Balls</button>
+<button onclick="verifyPassword(3)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="3" >Show Player 3's Balls</button>
+<button onclick="verifyPassword(4)" data-state="live" style="display:none"  class="btn btn-success btn-block" id="4" >Show Player 4's Balls</button>
+<button onclick="verifyPassword(5)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="5" >Show Player 5's Balls</button>
+<button onclick="verifyPassword(6)" data-state="live" style="display:none"  class="btn btn-success btn-block" id="6" >Show Player 6's Balls</button>
+<button onclick="verifyPassword(7)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="7" >Show Player 7's Balls</button>
+<button onclick="verifyPassword(8)" data-state="live" style="display:none"  class="btn btn-success btn-block" id="8" >Show Player 8's Balls</button>
+<button onclick="verifyPassword(9)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="9" >Show Player 9's Balls</button>
+<button onclick="verifyPassword(10)" data-state="live" style="display:none"  class="btn btn-success btn-block" id="10" >Show Player 10's Balls</button>
+<button onclick="verifyPassword(11)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="11" >Show Player 11's Balls</button>
+<button onclick="verifyPassword(12)" data-state="live" style="display:none"  class="btn btn-success btn-block" id="12" >Show Player 12's Balls</button>
+<button onclick="verifyPassword(13)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="13" >Show Player 13's Balls</button>
+<button onclick="verifyPassword(14)" data-state="live" style="display:none"  class="btn btn-success btn-block" id="14" >Show Player 14's Balls</button>
+<button onclick="verifyPassword(15)" data-state="live" style="display:none"  class="btn btn-default btn-block" id="15" >Show Player 15's Balls</button>
+        <br>
+    <div class="row" style="text-align:center" >
+        <div class="col ball">
+            <span data-state="live" class="ball1 ballz ballAnimate"></span>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+        <div class="col ball">
+            <span data-state="live" class="ball2 ballz ballAnimate"></span>
+            <span data-state="live" class="ball3 ballz ballAnimate"></span>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+        <div class="col ball">
+            <span data-state="live" class="ball4 ballz ballAnimate"></span>
+            <span data-state="live" class="ball8 ballz ballAnimate"></span>
+            <span data-state="live" class="ball5 ballz ballAnimate"></span>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+        <div class="col ball">
+            <span data-state="live" class="ball6 ballz ballAnimate"></span>
+            <span data-state="live" class="ball7 ballz ballAnimate"></span>
+            <span data-state="live" class="ball9 ballz ballAnimate"></span>
+            <span data-state="live" class="ball10 ballz ballAnimate"></span>
+        </div>
+    </div>
+    <div class="row" style="text-align:center">
+        <div class="col ball">
+            <span data-state="live" class="ball11 ballz ballAnimate"></span>
+            <span data-state="live" class="ball12 ballz ballAnimate"></span>
+            <span data-state="live" class="ball13 ballz ballAnimate"></span>
+            <span data-state="live" class="ball14 ballz ballAnimate"></span>
+            <span data-state="live" class="ball15 ballz ballAnimate"></span>
+        </div>
+    </div>
+    <div style="text-align:center" class="row">
+        <span id="allBalls" style="display:none;color:white">Tap ball when potted</span><br><br>
+    </div>
+<div id="ballDialog" title="Player Balls"></div>
+<div id="passDialog" title="Password Validation"></div>
+<div id="changePassDialog" title="Change Password"></div>
+<div style="text-align:center" id="settingsDialog" title="Change Names">
+	
+</div>
+	</div></div>
+</div>
+<div class="footer"><br>
+<span id="Settings">Settings</span> <br><br>
+<small>&copy; 2018 <a href="http://www.kevinshaffer.org">Kevin Shaffer</a></small>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+.ball1, .ball2, .ball3, .ball4, .ball5, .ball6, .ball7, .ball8, .ball9, .ball10, .ball11, .ball12, .ball13, .ball14, .ball15, .ball0{
+	background: url("../img/balls.png") no-repeat;
+	display:inline-block;
+
+}
+
+.ball1{
+	background-position: 0 0;
+	width: 50px;
+	height: 50px;
+}
+
+.ball2{
+	background-position: 0 -51px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball3{
+	background-position: 0 -102px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball4{
+	background-position: 0 -153px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball5{
+	background-position: 0 -204px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball6{
+	background-position: -102px 0;
+	width: 50px;
+	height: 50px;
+}
+
+.ball7{
+	background-position: -102px -51px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball8{
+	background-position: -102px -102.00000381469727px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball9{
+	background-position: -51px 0;
+	width: 50px;
+	height: 50px;
+}
+
+.ball10{
+	background-position: -51px -50.999996185302734px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball11{
+	background-position: -51px -101.99374771118164px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball12{
+	background-position: -51px -153.00000381469727px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball13{
+	background-position: -51px -204.00000381469727px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball14{
+	background-position: -153px 0;
+	width: 50px;
+	height: 50px;
+}
+
+.ball15{
+	background-position: -153px -51.000003814697266px ;
+	width: 50px;
+	height: 50px;
+}
+
+.ball0{
+	background-position: -153px -102.00000381469727px ;
+	width: 50px;
+	height: 50px;
+}
+

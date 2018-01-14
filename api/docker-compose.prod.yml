@@ -1,0 +1,14 @@
+version: "2"
+services:
+  prod:
+    build: 
+      context: .
+      dockerfile: Dockerfile.development
+    image: pillpool:latest # Naming the image (not using it)
+    command: uwsgi --ini-paste production.ini
+    volumes:
+      - .:/app
+    ports:
+      - "6543:6543"
+    environment:
+      - PYRAMID_DEBUG_ROUTEMATCH=true

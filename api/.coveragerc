@@ -1,0 +1,3 @@
+[run]
+source = pillpool
+omit = pillpool/test*

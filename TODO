@@ -1,0 +1,50 @@
+Pages:
+1. Login
+2. Create User
+3. Profile
+4. Rooms (Public/Private/Create/Join)
+5. Room (Once in one)
+6. Friends list
+
+
+Menu:
+    Has all the pages, with dropdowns for quick actions?
+
+
+Login Page:
+    Email, Password
+    JWT stored in cookie?
+
+Create User:
+    Email
+    First name
+    Last name
+    Password
+
+Profile:
+    Update email address
+    Update Password
+    Update First/Last name
+    Set/Update picture
+
+Rooms:
+    View public rooms
+    Search for rooms
+    Find room by key
+    Find rooms based on location?
+    Create New
+
+Create a room:
+    Name/Key for the room
+    Optionally set number of players
+    Invite people by email/friends
+    Location based creation?
+
+Once in a room:
+    Start a game once everyone has joined
+    Force start from host
+    change who the host is
+    make sure that everyone is notified when a user gets eliminated
+    Lots of other things.
+
+

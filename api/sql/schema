@@ -1,0 +1,43 @@
+Users:
+    Id (PK)
+    Email (UNIQUE)
+    First Name
+    Last Name
+    Password
+    Salt
+    Temp
+
+Friends:
+    ID
+    USER_ONE
+    USER_TWO
+    STATUS (1=FRIENDS | 2=PENDING | 3=REJECTED)
+    Date Created|Modified|Deleted
+
+Rooms:
+    ID (PK)
+    Owner (Soft FK)
+    Name
+    Key (passphrase)
+    Private (boolean)
+    Location (lat/long?)
+    Date Created|Modified|Deleted
+
+Games:
+    ID (PK)
+    ROOM (FK)
+    Winner (Soft FK)
+    Date Created|Modified|Deleted
+    Balls: 
+
+
+Balls: {
+    "1": {
+        "owner": 1,
+        "state": "live",
+        "clicker": 2
+    },
+    "2" : {
+        
+    }
+}

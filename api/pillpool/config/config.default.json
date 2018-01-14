@@ -1,0 +1,16 @@
+{
+    "db": {
+        "pillpool": {
+            "username": "postgres",
+            "host": "docker.for.mac.localhost",
+            "password": "pw",
+            "port": "5432",
+            "database": "pillpool"
+        }
+    },
+    "keys": {
+        "jwt": "",
+        "jwt-issuer": "KevinShaffer",
+        "sendgrid": ""
+    }
+}

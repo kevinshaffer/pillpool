@@ -1,0 +1,14 @@
+version: "2"
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    image: pillpool:latest # Naming the image (not using it)
+    command: pytest -v -s
+    volumes:
+      - .:/app
+    ports:
+      - "6543:6543"
+    environment:
+      - PYRAMID_DEBUG_ROUTEMATCH=true
