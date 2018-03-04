@@ -33,5 +33,3 @@ begin
 
 end
 $function$;
-
-select * from pp.create_user('kevin', 'kevinshaffera@gmail.com', 'test', 'Kevin', 'Shaffer');
