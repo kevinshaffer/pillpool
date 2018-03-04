@@ -1,50 +1,10 @@
-Pages:
-1. Login
-2. Create User
-3. Profile
-4. Rooms (Public/Private/Create/Join)
-5. Room (Once in one)
-6. Friends list
+MVP Todo:
+
+1. Make sure that an empty json request doesn't error when acceptable.
+2. Handle the winner upon potting of balls (set the winner attribute).
 
 
-Menu:
-    Has all the pages, with dropdowns for quick actions?
-
-
-Login Page:
-    Email, Password
-    JWT stored in cookie?
-
-Create User:
-    Email
-    First name
-    Last name
-    Password
-
-Profile:
-    Update email address
-    Update Password
-    Update First/Last name
-    Set/Update picture
-
-Rooms:
-    View public rooms
-    Search for rooms
-    Find room by key
-    Find rooms based on location?
-    Create New
-
-Create a room:
-    Name/Key for the room
-    Optionally set number of players
-    Invite people by email/friends
-    Location based creation?
-
-Once in a room:
-    Start a game once everyone has joined
-    Force start from host
-    change who the host is
-    make sure that everyone is notified when a user gets eliminated
-    Lots of other things.
-
-
+NON-MVP
+1. When you come to the page, look in local storage to see if you have been assigned a user_id/username/token
+    If true: Continue as that user.
+    If false: Prompt to create a guest username or a full fledged account

@@ -1,11 +1,13 @@
 Users:
     Id (PK)
+    Username
     Email (UNIQUE)
     First Name
     Last Name
     Password
     Salt
     Temp
+    Guest
 
 Friends:
     ID

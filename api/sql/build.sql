@@ -1,14 +1,18 @@
+drop schema pp cascade;
 create schema pp;
 
 create table pp.users(
 	id serial
 	, email text unique
+	, username text
 	, first_name text
 	, last_name text
 	, password text
 	, salt text
 	, temp text
 	, photo bytea
+	, guest boolean default false
+    , room_id integer
 	, date_created float default extract(epoch from now())
 	, date_modified float
 	, date_deleted float default null
@@ -31,6 +35,7 @@ create table pp.rooms(
 	, owner_user_id INTEGER
 	, name text
 	, passphrase text
+	, players integer[] default array[]::integer[]
 	, private BOOLEAN
 	, location jsonb
 	, date_created float default extract(epoch from now())
@@ -38,14 +43,14 @@ create table pp.rooms(
 	, date_deleted float default null
 	, primary key (id)
 );
-create unique index on pp.rooms (name) where date_deleted is null;
+create unique index on pp.rooms (name) where date_deleted is null and name is not null;
 -- Unique room based on name and date_deleted is NULL
 
 create table pp.games(
 	ID serial
 	, room_id INTEGER references pp.rooms(id)
 	, winner integer -- references pp.users
-	, players integer[]
+	, players integer[] default array[]::integer[]
 	, balls jsonb
 	, date_created float default extract(epoch from now())
 	, date_modified float
@@ -64,3 +69,6 @@ Balls: {
     }
 }
 */
+
+
+-- TODO: have a trigger for date modified on games/rooms?

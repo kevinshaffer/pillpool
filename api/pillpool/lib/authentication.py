@@ -123,12 +123,19 @@ def validate_credentials(email, password):
     try:
         query = """
             SELECT
-                u.id
-                , u.email
-                , u.first_name
-                , u.last_name
+                u.id 
+                , json_build_object(
+                    'id', u.id,
+                    'username', u.username,
+                    'first', u.first_name,
+                    'last', u.last_name,
+                    'email', u.email,
+                    'photo', u.photo,
+                    'guest', u.guest
+                ) as user
             from pp.users u
             where u.email = %s
+                and u.guest = false
                 and u.date_deleted is null
                 and u.temp is null
                 and encode(digest(%s||u.salt, 'sha256'), 'hex')=u.password;

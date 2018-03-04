@@ -29,13 +29,13 @@ def get_connection_url(datasource={"key": "db/pillpool"}):
             return get_athena_connection_url(datasource)
     config_key = datasource["key"]
     if config_key not in KNOWN_CONFIG.keys():
-        KNOWN_CONFIG[config_key] = json.loads(config_value(config_key))
+        KNOWN_CONFIG[config_key] = config_value(config_key)
     return "postgresql://{username}:{password}@{host}:{port}/{database}".format(**KNOWN_CONFIG[config_key])
 
 def get_athena_connection_url(datasource):
     config_key=get_value(datasource, "key", "db/athena")
     if config_key not in KNOWN_CONFIG.keys():
-        KNOWN_CONFIG[config_key] = json.loads(config_value(config_key))
+        KNOWN_CONFIG[config_key] = config_value(config_key)
     database_name=get_value(datasource, "database_name", "acciona")
     s3_dir=get_value(datasource, "s3_dir", "pillpool-json-fs/acciona-backup-pillpool/companies/acciona/")
     region_name=get_value(datasource, "region_name", get_value(KNOWN_CONFIG[config_key], "aws_region_name", "us-east-1"))

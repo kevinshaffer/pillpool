@@ -11,5 +11,6 @@ if __name__ == "__main__":
     sys.exit(1)
 
 def configuration(config):
+    config.add_route("users",                       "/users")
     config.add_route("users_id",                    "/users/{id}")
 

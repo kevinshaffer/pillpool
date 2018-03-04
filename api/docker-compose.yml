@@ -9,6 +9,6 @@ services:
     volumes:
       - .:/app
     ports:
-      - "6543:6543"
+      - "6540:6540"
     environment:
       - PYRAMID_DEBUG_ROUTEMATCH=true

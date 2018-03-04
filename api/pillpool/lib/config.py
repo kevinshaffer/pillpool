@@ -32,7 +32,7 @@ def find(element, json_data, delimiter="/"):
     rv = json_data
     for key in keys:
         rv = rv[key]
-    return json.dumps(rv)
+    return rv
 
 def decrypt(enc, key = None):
     '''
