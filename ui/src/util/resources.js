@@ -1,8 +1,9 @@
 
 import requestPromiseNative from 'request-promise-native';
 import jwtDecode from 'jwt-decode';
+var config = require('./config.json');
 
-let apiPrefix = 'http://localhost:6540';
+let apiPrefix = config.apiPrefix;// || 'http://localhost:6540';
 
 
 function getToken() {

@@ -1,9 +1,11 @@
 from pillpool.lib.connections import execute_query
 import pillpool.models.games.games as games
+from pillpool.models.rooms.rooms import get_room_id
 
 
 # Check to see if there is only one remaining player
 def check_game_over(room_id, game_id, game_info):
+    room_id = get_room_id(room_id)
     if len(game_info["remaining_players"]) == 1:
         winner_id, winner_username = set_winner(room_id, game_id, game_info["remaining_players"][0])
         game_info["winner"] = winner_id
@@ -11,6 +13,7 @@ def check_game_over(room_id, game_id, game_info):
     
 # Set the winner variable in the games record
 def set_winner(room_id, game_id, player_id):
+    room_id = get_room_id(room_id)
     query = """
         UPDATE pp.games
             set winner = %s
@@ -34,6 +37,7 @@ def set_winner(room_id, game_id, player_id):
 
 
 def pot(room_id, game_id, ball_number, user_id, potter_user_id=None):
+    room_id = get_room_id(room_id)
     query = """
         UPDATE pp.games
             set balls = jsonb_set(
@@ -64,6 +68,7 @@ def pot(room_id, game_id, ball_number, user_id, potter_user_id=None):
     return game_info
 
 def unpot(room_id, game_id, ball_number, user_id):
+    room_id = get_room_id(room_id)
     query = """
         UPDATE pp.games
             set balls = jsonb_set(

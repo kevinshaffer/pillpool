@@ -12,6 +12,24 @@ EMOJIS = {
     9: ['&#x1F913', '&#x1F63B', '&#x1F60E', '&#x1F636', '&#x1F47B', '&#x1F921', '&#x1F922', '&#x1F914', '&#x1F64A', '&#x1F4A9', '&#x1F608', '&#x1F916', '&#x1F643', '&#x1F601', '&#x1F631']
 }
 
+def get_room_id(room_id):
+    try:
+        room_id = int(room_id)
+    except:
+        room_id = str(room_id)
+    if type(room_id) == str:
+        query = """
+            select id from pp.rooms where name = %s
+        """
+        result = execute_query(
+            datasource="db/pillpool",
+            query=query,
+            db_params=[room_id]
+        )
+        return result[0]["id"]
+    else:
+        return room_id
+
 def post_rooms(user_id, name=None, passphrase=None, location=None):
     exists = False
     if name:
@@ -35,26 +53,20 @@ def post_rooms(user_id, name=None, passphrase=None, location=None):
             , %s
             , %s
             , %s
-        ) returning id
+        ) returning id, name
     """
-    room_id = execute_query(
+    room = execute_query(
         datasource="db/pillpool",
         query=query,
         db_params=[user_id, name, passphrase, location]
-    )[0]["id"]
-    join(room_id, user_id)
-    if not name:
-        execute_query(
-            datasource="db/pillpool",
-            query="update pp.rooms set name = id where id = %s",
-            db_params=[room_id],
-            output_type="raw"
-        )
-        name = room_id
-    return {"name": name, "id": room_id}
+    )[0]
+    join(room["id"], user_id)
+    return {"name": room["name"], "id": room["id"]}
 
 
 def get_rooms_id(room_id, user_id, last_modified = None):
+    room_id = get_room_id(room_id)
+
     query = """
         SELECT
             r.id
@@ -82,12 +94,14 @@ def get_rooms_id(room_id, user_id, last_modified = None):
     )
     if result:
         for i, player_id in enumerate(sorted(result[0]["players"])):
-            result[0]["players"][player_id]["emoji"] = EMOJIS[int(room_id)%9][i]
+            result[0]["players"][player_id]["emoji"] = EMOJIS[int(room_id)%len(EMOJIS)][i]
         return result[0]
     else:
         return {}
 
 def get_rooms_id_live_game(room_id, user_id):
+    room_id = get_room_id(room_id)
+
     query = """
         select 
             g.id as game_id 
@@ -131,6 +145,8 @@ def get_rooms(user_id):
 
 def join(room_id, user_id):
     # If player is in a different room, remove them:
+    room_id = get_room_id(room_id)
+
     query = """
         UPDATE pp.rooms r
             set players = array_remove(players, u.room_id)
@@ -175,6 +191,9 @@ def join(room_id, user_id):
     return True
 
 def leave(room_id, user_id):
+    room_id = get_room_id(room_id)
+
+
     query = """
         UPDATE pp.rooms
             set players = array_remove(players, %s)

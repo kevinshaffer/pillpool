@@ -1,7 +1,7 @@
 drop schema pp cascade;
 create schema pp;
 
-create table pp.users(
+create table if not exists pp.users(
 	id serial
 	, email text unique
 	, username text
@@ -19,7 +19,7 @@ create table pp.users(
 	, primary key (id)
 );
 
-create table pp.friends(
+create table if not exists pp.friends(
 	ID serial
 	, user_one INTEGER --requester
 	, user_two integer -- requestee
@@ -30,7 +30,7 @@ create table pp.friends(
 	, primary key (id)
 );
 
-create table pp.rooms(
+create table if not exists pp.rooms(
 	ID serial
 	, owner_user_id INTEGER
 	, name text
@@ -46,7 +46,7 @@ create table pp.rooms(
 create unique index on pp.rooms (name) where date_deleted is null and name is not null;
 -- Unique room based on name and date_deleted is NULL
 
-create table pp.games(
+create table if not exists pp.games(
 	ID serial
 	, room_id INTEGER references pp.rooms(id)
 	, winner integer -- references pp.users
@@ -56,6 +56,13 @@ create table pp.games(
 	, date_modified float
 	, date_deleted float default null
 	, primary key (id)
+);
+
+create table if not exists pp.room_names(
+	name text not null,
+	, free boolean default true,
+    , date_selected float default null
+	, primary key (animal)
 );
 /*
 Balls: {

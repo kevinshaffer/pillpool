@@ -1,4 +1,5 @@
 from pillpool.lib.connections import execute_query
+from pillpool.models.rooms.rooms import get_room_id
 import random
 import json
 
@@ -17,6 +18,7 @@ EMOJIS = {
 
 # Start gamme
 def post_games(room_id, user_id, balls_per_player):
+    room_id = get_room_id(room_id)
     game_already_running_query = "select id from pp.games where room_id = %s and winner is null;"
     game_already_running_result = execute_query(
         datasource="db/pillpool",
@@ -74,6 +76,7 @@ def post_games(room_id, user_id, balls_per_player):
 # TODO: This needs to return an object that says how many balls each player has left
 # I don't think I need the ball_hash anymore... but maybe?
 def get_games_id(room_id, game_id, user_id, last_modified=None):
+    room_id = get_room_id(room_id)
     query = """
         SELECT
             g.id
@@ -136,12 +139,13 @@ def get_games_id(room_id, game_id, user_id, last_modified=None):
         result[0]["my_balls"] = my_balls
         result[0]["remaining_players"] = remaining_players
         for i, player_id in enumerate(result[0]["players"]):
-            result[0]["players"][player_id]["emoji"] = EMOJIS[int(room_id)%9][i]
+            result[0]["players"][player_id]["emoji"] = EMOJIS[int(room_id)%len(EMOJIS)][i]
         return result[0]
     else:
         return  {"status_code": 404, "error": True, "message": "This game does not exist."}
 
 def get_games(room_id, user_id):
+    room_id = get_room_id(room_id)
     query = """
         SELECT
             g.id
@@ -168,6 +172,7 @@ def get_games(room_id, user_id):
 
 
 def leave(room_id, game_id, user_id):
+    room_id = get_room_id(room_id)
     query = """
         UPDATE pp.games
             set players = array_remove(players, %s)

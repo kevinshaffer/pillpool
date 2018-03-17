@@ -3,12 +3,12 @@
         <h2> Hello {{ $root.user.username }} </h2>
         <div>
             <br>
-            <div v-show="!join_room_input" @click="join_room_input = !join_room_input">Join Game</div>
+            <div v-show="!join_room_input" @click="join_room_input = !join_room_input">Join Room</div>
             <label v-show="join_room_input" for= "join_room_input">Room: </label> 
             <input v-show="join_room_input" name="join_room_input" placeholder="Enter to Submit" @keyup.enter="joinRoom" v-model="room_name"/> 
             <br>
             <!--<div v-show="join_room_input" @click="joinRoom">Join</div>-->
-            <div v-show="!join_room_input" @click="createRoom">Create Game</div>
+            <div v-show="!join_room_input" @click="createRoom">Create Room</div>
         </div>
     </div>
 </template>
