@@ -138,7 +138,7 @@ def get_games_id(room_id, game_id, user_id, last_modified=None):
 
         result[0]["my_balls"] = my_balls
         result[0]["remaining_players"] = remaining_players
-        for i, player_id in enumerate(result[0]["players"]):
+        for i, player_id in enumerate(sorted(result[0]["players"])):
             result[0]["players"][player_id]["emoji"] = EMOJIS[int(room_id)%len(EMOJIS)][i]
         return result[0]
     else:

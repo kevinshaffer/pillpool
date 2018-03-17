@@ -84,7 +84,7 @@ BEGIN
 END;
 $$;
 
-CREATE FUNCTION set_updated_timestamp()
+CREATE OR REPLACE FUNCTION set_updated_timestamp()
   RETURNS TRIGGER
   LANGUAGE plpgsql
 AS $$

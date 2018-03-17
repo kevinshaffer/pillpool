@@ -59,10 +59,10 @@ create table if not exists pp.games(
 );
 
 create table if not exists pp.room_names(
-	name text not null,
-	, free boolean default true,
+	name text not null
+	, free boolean default true
     , date_selected float default null
-	, primary key (animal)
+	, primary key (name)
 );
 /*
 Balls: {
